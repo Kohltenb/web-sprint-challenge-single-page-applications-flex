@@ -56,20 +56,20 @@ function OrderForm() {
   const [orderData, setOrderData] = useState([])
   
 
-  // const submitHandler = (event) => {
-  //   event.preventDefault()
-  //   setOrders([...orders, form])
-  //   history.push('/myorder')
-  // }
-
-  const handleSubmit = () => {
-    axios.post(`https://reqres.in/api/orders`, formValues)
-    .then(res => {
-      setOrderData([res.data, ...orderData])
-    })
-    .catch(err => console.error(err))
-    .finally(() => setFormValues(initialFormValues))
+  const submitHandler = (event) => {
+    event.preventDefault()
+    setOrders([...orders, form])
+    history.push('/myorder')
   }
+
+  // const handleSubmit = () => {
+  //   axios.post('https://reqres.in/api/orders', formValues)
+  //   .then(res => {
+  //     setOrderData([res.data, ...orderData])
+  //   })
+  //   .catch(err => console.error(err))
+  //   .finally(() => setFormValues(initialFormValues))
+  // }
   
 
 
@@ -93,7 +93,7 @@ function OrderForm() {
     // console.log(form)
 
   return (
-    <form onSubmit={handleSubmit} id='pizza-form'>
+    <form onSubmit={submitHandler} id='pizza-form'>
       <div>
         <span className='error'>{errors.name}</span>
         <label>Name on order: 
@@ -142,7 +142,7 @@ function OrderForm() {
         </div>
         <div id='submit-button'>
           <label>
-            <button data-test-id='subBtn' id='order-button' type='submit' disabled={disabled} >Complete Order</button>
+            <button  data-test-id='subBtn' id='order-button' type='submit' disabled={disabled} >Complete Order</button>
           </label>
         </div>
       </div>
@@ -157,3 +157,4 @@ function OrderForm() {
 }
 
 export default OrderForm
+
