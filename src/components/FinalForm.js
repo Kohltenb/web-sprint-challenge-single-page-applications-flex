@@ -39,10 +39,10 @@ function FinalForm() {
     const formSchema = yup.object().shape({
         name: yup.string().min(2, "name must be at least 2 characters"),
         dropdown: yup.string(),
-        toppings1: yup.boolean(),
-        toppings2: yup.boolean(),
-        toppings3: yup.boolean(),
-        toppings4: yup.boolean(),
+        topping1: yup.boolean(),
+        topping2: yup.boolean(),
+        topping3: yup.boolean(),
+        topping4: yup.boolean(),
         special: yup.string(),
     })
 
@@ -64,7 +64,7 @@ function FinalForm() {
             name: form.name,
             size: form.dropdown,
             special: form.special,
-            toppings: ["Pepperoni", "Sasuage", "Pineapple", "Peppers"].filter(toppings => form[toppings])
+            topping: ["Pepperoni", "Sasuage", "Pineapple", "Peppers"].filter(topping => form[topping])
         }
         handleSubmit(newOrder)
     }
@@ -81,7 +81,7 @@ function FinalForm() {
 
     const formChange = (event) => {
         const name = event.target.name
-        const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
+        const value = event.target.type === "checkbox" ? event.target.checked : event.target.value
 
         validateChange(name, value)
 
@@ -100,8 +100,8 @@ function FinalForm() {
                     />
                 </label>
             </div>
-            <div name='dropdown' id='size'>
-                <label htmlFor="pizza-dropdown">Choose a size:</label>
+            <div name='dropdown' >
+                <label htmlFor="pizza-dropdown" name='size'> Choose a size:</label>
                 <select id="size-dropdown" onChange={formChange} >
                     <option value="Personal"> Personal </option>
                     <option value="Medium" > Medium </option>
@@ -111,27 +111,27 @@ function FinalForm() {
             <div name='checklist' id='toppings'>
                 <label> Toppings: Pepperoni
                     <input
-                        type='checkbox' name='topping1' onChange={formChange}
+                        type="checkbox" name='topping1' onChange={formChange}
                     />
                 </label>
                 <label> Sasuage
                     <input
-                        type='checkbox' name='topping2' onChange={formChange}
+                        type="checkbox" name='topping2' onChange={formChange}
                     />
                 </label>
                 <label> Pineapple
                     <input
-                        type='checkbox' name='topping3' onChange={formChange}
+                        type="checkbox" name='topping3' onChange={formChange}
                     />
                 </label>
                 <label> Peppers
                     <input
-                        type='checkbox' name='topping4' onChange={formChange}
+                        type="checkbox" name='topping4' onChange={formChange}
                     />
                 </label>
-                <div id='special-text'>
-                    <label>Special instructions:
-                        <input
+                <div>
+                    <label>
+                        <input id='special-text' 
                             type='text' name='special' onChange={formChange}
                         />
                     </label>

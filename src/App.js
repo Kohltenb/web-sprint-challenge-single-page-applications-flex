@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { Switch, Route, Link } from 'react-router-dom'
-import OrderForm from "./components/OrderForm";
-import axios from 'axios'
+import FinalForm from "./components/FinalForm";
+
 
 
 const App = () => {
@@ -10,13 +10,13 @@ const App = () => {
   const [orders, setOrders] = useState([])
 
   return (
-    <Switch>
-       <header>
-        <Link to='/'>Home</Link>
-        <Link to='/pizza'>Order</Link>
-        <Link to='/myorder'>My Order</Link> 
-  
-
+   <div>
+        <header>
+         <Link to='/'>Home</Link>
+         <Link to='/pizza'>Order</Link>
+         <Link to='/myorder'>My Order</Link> 
+        </header>
+      <Switch>
         <Route exact path='/'>
           <h1>Lambda Eats</h1>
           <p>Best Programmer pizza WITH delivery!</p>
@@ -25,7 +25,7 @@ const App = () => {
         <Route exact path='/pizza'>
           <h1>Lambda Eats</h1>
           <h2>Build your pizza</h2>
-          <OrderForm id='pizza-form' orders={orders} setOrders={setOrders} > </OrderForm>
+          <FinalForm id='pizza-form' orders={orders} setOrders={setOrders} />
         </Route>
         <Route exact path='/myorder'>
           <h1>Lambda Eats</h1>
@@ -42,8 +42,8 @@ const App = () => {
             ))
           }
         </Route>
-     </header>
-    </Switch>
+     </Switch>
+  </div>
   );
 };
 export default App;
